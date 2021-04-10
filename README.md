@@ -31,6 +31,6 @@ RISC OS Desktop Modernisation Global Control to push Windows to the front by a s
 ## Status
 At this time I am doign some reserch to find best way to handle all RISC OS usual edge-cases (many) while general windows-to-front seems already to be working fine (look into Models.bas for the actual code I am testing)
 
-Althought is BBC BASIC code seems to be performing well, I still think for the final code C may be better
+Althought if BBC BASIC code seems to be performing well, I still think C might be better for the final code 
 
  
