@@ -1,0 +1,26 @@
+Collected Requirements
+----------------------
+
+R0001
+----
+Allow any Window object to be brought to foreground by clicking with the mouse left button on every element of it.
+
+R0002
+-----
+Allow a user to specify additional "modifiers" (extra keys that have to be
+pressed at the same time of the mouse click of R0001) in order ot manifest
+clear intention of the required action. This is for users that would like
+to have the new funtionality while maintaining the original RISC OS WIMP
+feature of being able to use background windows as well.
+
+R0003
+-----
+The tool should work at least on:
+- RISC OS 3.1x, 3.20
+- RISC OS 3.50, 3.60, 3.7x
+- RISC OS 4.0x, 4.3x
+- RISC OS 5.xy
+Stretch:
+- RISC OS 6 (if required)
+
+ 

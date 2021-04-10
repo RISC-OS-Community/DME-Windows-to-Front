@@ -1,0 +1,42 @@
+Windows To Front (BBC BASIC Model)
+----------------------------------
+
+Design
+------
+This is what I would have implemented 20/25 years ago. It does most of the job well and the design is almost elegant.
+
+The Global Control here it's implemented as a WIMP App and it uses Null Event over a Wimp_PollIdle with a delay that is suitable for slow CPUs as well as fast CPUs. This design allows to capture clicks that do not belongs to WinToFront and so it allows us to be able to achieve the goal of the Control.
+
+- It uses very little CPU time roughly 0.000720 x 1000ms, so every CPU Load utility will report this tool using absolute 0% CPU.
+
+- It uses very little RAM, works fine with 16KB of RAM.
+
+- It recognise and handles background correctly
+
+- It recognise and handles icon -2 and -3 correctly (back icon and close icon)
+
+- It recognise and handles correctly when we click on a child window in a complex window structure and send to front the parent (Nested Window)
+
+- Being written in BBC BASIC makes it suitable for ALL RISC OS version and ARM architectures with the exclusion of RISC OS 2 (which is not a target for the DME).
+
+So it seems a doable approach, however this approach presents some potential issue on the usual RISC OS/WIMP edge cases:
+
+1) Using Wimp_SendMessage to request the Window to come to foreground only work with Apps that will NOT ignore the message (that means most of the RO Apps yes, but some important ones like Ovation do not seems to be processing such message).
+
+Applications that I have found not responding to standard Wimp messages:
+- Ovation
+- Schema2
+- PipeDream
+
+However while Ovation doesn't responds to any Wimp Message, the others works fine when we click on the window borders, so for the others the problem is sligthely smaller.
+
+This could be fixed with some hack probably.
+
+2) Applications like Docktor test to force themselves always at the top of the Windows stack, so just relying on the "top" value of the windows stack is not sufficient, we need to add context (for example determine which application's window is always at the top in which case we can ignore it or something)
+
+3) Applications that uses nested windows together with non-nested windows in a single window composition. For example:
+
+- !Packman
+- !Store
+
+In this case probably solution for edge case 2 should help as well, basically using Wimp_GetWindowInfo to gather more context and also get the TaskName to know it needs special care (eventually)

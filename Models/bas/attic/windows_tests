@@ -1,0 +1,14 @@
+     REM *Report ...about to request Wimp_GetWindowInfo
+     REM b2%!0=ob%!0:SYS "Wimp_GetWindowInfo",,b2%,&4B534154
+     REM *Report ok done it, now let's extract the info from the return block
+
+     REM IF (b2%!0<>-1) THEN
+     REM     b3%!0=b2%!4:REM Extract the Windows block
+     REM ENDIF
+
+     REM SYS "Wimp_SendMessage",19,ob%,owin%,oicn% TO ,,otask%
+
+     REM ob%!8=1:ob%!12=owin%:ob%!16=-2:SYS "Wimp_SendMessage",6,ob%,-2,-2
+     REM SYS "Wimp_ForceRedraw",owin%,&B534154,3
+
+     REM b2%!20=&400C6:SYS "Wimp_SendMessage",17,b2%,task%
